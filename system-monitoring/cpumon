@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Path to the log file
+LOGFILE=/var/log/cpumon.log
+TRESHOLD=95
+CPU_MAX=$(( $(nproc) * 100 ))
+
+# Main monitoring loop
+while true; do
+    # Monitor CPU usage
+    CPU_USAGE=$(top -b -n 1 | awk 'NR>7{s+=$9} END {print s}')
+    
+    # If CPU usage is at 100%
+    if (( CPU_USAGE > $((CPU_MAX*TRESHOLD/100)) )); then
+        # Identify the process with the highest CPU usage
+        TOP_PROCESS=$(ps -eo pid,%cpu,cmd --sort=-%cpu | head -n 2 | tail -n 1)
+        # Write information to the log file
+        echo "$(date +'%F_%T_%Z') - Total CPU usage is at $CPU_USAGE% caused by process: $TOP_PROCESS" >> $LOGFILE
+    fi
+    # A short pause to conserve resources
+    sleep 10
+done
+
