@@ -1,0 +1,23 @@
+#!/bin/bash
+
+[ -z "$1" ] && fritzbox="fritz.box" || fritzbox="$1"
+
+# URL to UPnP-interface of the Fritzbox
+UPNP_URL="http://$fritzbox:49000/igdupnp/control/WANIPConn1"
+
+# SOAP-request for GetExternalIPAddress
+SOAP_REQUEST='<?xml version="1.0" encoding="utf-8"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"
+    s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:u="urn:schemas-upnp-org:service:WANIPConnection:1">
+    <s:Body>
+        <u:GetExternalIPAddress xmlns:u="urn:schemas-upnp-org:service:WANIPConnection:1">
+        </u:GetExternalIPAddress>
+    </s:Body>
+</s:Envelope>'
+
+curl -s\
+    -H "Content-Type: text/xml"\
+    -H "SOAPAction: \"urn:schemas-upnp-org:service:WANIPConnection:1#GetExternalIPAddress\""\
+    -d "$SOAP_REQUEST" $UPNP_URL | grep -oP '(?<=NewExternalIPAddress>)[^<]+'
+

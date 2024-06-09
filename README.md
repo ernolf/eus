@@ -2,6 +2,12 @@
 ## ernolfs utility scripts - little script flakes for linux admins
 
 ---
+---
+
+#### **networking/fbwanip**
+  - grab WAN IP from your fritzbox.
+
+---
 
 #### **system-monitoring/cpumon**
   - monitors CPU usage and log processes that consume all available CPU resources to identify potential bottlenecks and performance issues.
@@ -13,5 +19,6 @@
       ```
       kill $(pgrep -f "cpumon");fg
       ```
+
 ---
 
