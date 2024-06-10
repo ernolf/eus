@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# input value (hexadecimal or decimal)
+input_value=$1
+
+if [[ $input_value =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+    unixtime=$input_value
+else
+    unixtime=$(date -ud "$input_value" "+%s" 2>/dev/null)
+    if [ $? -ne 0 ]; then
+        echo "Error: Wrong input."
+        exit 1
+    fi
+fi
+
+if [[ $unixtime =~ ^[0-9]+\.[0-9]+$ ]]; then
+    modulo=${unixtime#*.}
+    unixtime=${unixtime%.*}
+    modulo=$(echo $modulo | sed 's/0*$//')
+    modulo=${modulo:0:7}
+    for ((i=0;i<$((7-${#modulo}));i++)); do
+        modulo="${modulo}0"
+    done
+else
+    modulo=0
+fi
+
+# offset in seconds between Windows-zero point (1601) and unix-zero point (1970)
+offset=11644473600
+
+# calculate the Windows timestamp in 100 nanosecond intervals
+filetime=$(( (unixtime + offset) * 10000000 + modulo ))
+
+((modulo))&&modulo=".$modulo"||unset modulo
+
+# use `date` to show date and time
+formatted_date=$(date -u -d @"$unixtime" "+%Y-%m-%d %H:%M:%S$modulo UTC")
+
+echo "Input Value: $input_value"
+
+echo "Windows FileTime (decimal): $filetime"
+echo "Windows FileTime (hexadecimal): 0x$(printf "%X" "$filetime")"
+echo "Unix-/Epoch-Time: $unixtime$modulo"
+echo "Date and Time: $formatted_date"
+
+exit 0
+

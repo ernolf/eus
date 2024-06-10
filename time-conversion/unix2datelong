@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+#unix_time_with_fractional_seconds=1692147671.874306  # Example for UNIX-timestamp with fractions
+unix_time_with_fractional_seconds=$1
+
+# transform UNIX-time into the desired date-format
+datetime=$(date -u -d "@$unix_time_with_fractional_seconds" +"%Y-%m-%d %H:%M:%S")
+fractional_seconds="${unix_time_with_fractional_seconds#*.}"
+timezone="+00:00"
+
+# create the complete date/time-format string
+date_string="$datetime.$fractional_seconds$timezone"
+
+echo "date/time: $date_string"
+

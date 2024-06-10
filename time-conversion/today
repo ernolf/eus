@@ -1,0 +1,17 @@
+#!/bin/bash
+
+LC_TIME=de_DE.UTF-8
+month=$(date +%m)
+set $(date)
+year=$6
+day=$2
+G='\033[0;32m'
+NC='\033[0m'
+BOLD=$(tput smso)
+OFFBOLD=$(tput rmso)
+
+cal $month $year |
+    sed "s/^/ /
+         s/$/ /
+         s/ ${day%.} / $(echo -e $G$BOLD${day%.}$NC$OFFBOLD) /g"
+

@@ -22,3 +22,20 @@
 
 ---
 
+#### **time-conversion/d2u**
+  - convert human readable date format to unixtime (seconds since the unix epoch = 1970-01-01 00:00 UTC)
+#### **time-conversion/u2d**
+  - convert unixtime to human readable date format
+#### **time-conversion/unix2datelong**
+  - convert unixtime to human readable long date format
+#### **time-conversion/filetime2unix**
+  - convert windows filetime (a 64-bit value representing the number of 100-nanosecond intervals since 1601-01-01- 00:00 UTC) to unixtime and human readable time format
+#### **time-conversion/unix2filetime**
+  - convert unixtime or human readable time to windows filetime
+#### **time-conversion/today**
+  - little calendar of actual month, today is highlighted
+#### **time-conversion/year**
+  - little calendar of actual year
+
+---
+

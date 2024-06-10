@@ -1,0 +1,6 @@
+#!/bin/bash
+
+date -d "$(echo "$1" | sed 's/\./-/g')" "+%s"
+
+exit 0
+

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+LC_TIME=de_DE.UTF-8
+current_date=$(date +%Y-%m-%d)
+current_day=$(date +%e)
+current_month=$(date +%B | tr '[:upper:]' '[:lower:]')
+current_year=$(date +%Y)
+
+highlight_color='\033[0;32m'
+past_color='\033[0;37m'
+default_color='\033[0m'
+
+ncal_output=$(ncal $current_year)
+
+echo "$ncal_output"
+
+exit 0
+# TODO: does not yet work:
+#    echo "$ncal_output" | awk -v current_month="$current_month" -v current_day="$current_day" -v highlight_color="$highlight_color" -v past_color="$past_color" -v default_color="$default_color" '
+#    BEGIN {
+#        split("Januar Februar März April Mai Juni Juli August September Oktober November Dezember", months, " ")
+#        for (i = 1; i <= 12; i++) {
+#            month_map[months[i]] = i
+#        }
+#    }
+#    NR == 1 {
+#        year = $1
+#        print $0
+#    }
+#    NR == 2 {
+#        for (i = 2; i <= NF; i++) {
+#            printf "%s ", $i
+#        }
+#        print ""
+#    }
+#    NR >= 3 && NR <= 9 {
+#        if (current_month in month_map) {
+#            current_month_num = month_map[current_month]
+#            for (i = 1; i <= NF; i++) {
+#                if (i == 1) {
+#                    printf "%s ", months[current_month_num]
+#                } else if (i >= 2 && NR == 3 + current_month_num) {
+#                    printf "%s%s%s ", highlight_color, $i, default_color
+#                } else if (i < 2 && NR < 3 + current_month_num) {
+#                    printf "%s%s%s ", past_color, $i, default_color
+#                } else {
+#                    printf "%s ", $i
+#                }
+#            }
+#        } else {
+#            print $0
+#        }
+#        print ""
+#    }
+#    NR > 9 {
+#        print
+#    }
+#    '
+
