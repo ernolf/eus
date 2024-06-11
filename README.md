@@ -6,6 +6,8 @@
 
 #### **networking/fbwanip**
   - grab WAN IP from your fritzbox.
+#### **networking/myip**
+  - grab IP from host.
 
 ---
 
