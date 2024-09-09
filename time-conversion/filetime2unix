@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# input value (hexadecimal or decimal)
+# input value (hexadecimal or decimal. Maximum = 0xFFFFFFFFFFFFFFFF)
 input_value=$1
 
 if [[ $input_value == "0x"* ]]; then
-    filetime=$(printf "%d" "$input_value")
+	# use python, to enable large files
+	filetime=$(python -c "print($input_value)")
 else
-    filetime=$input_value
+	filetime=$input_value
 fi
 
 while [ ${#filetime} -lt 18 ]; do filetime="${filetime}0";done
@@ -15,10 +16,10 @@ while [ ${#filetime} -lt 18 ]; do filetime="${filetime}0";done
 offset=11644473600
 
 # convert 100-modulo-steps to seconds and apply offset
-unixtime=$((filetime / 10000000 - offset))
+unixtime=$(python -c "print(($filetime // 10000000) - $offset)")
 
 # extrakt the remaining modulo
-modulo=$((filetime % 10000000))
+modulo=$(python -c "print($filetime % 10000000)")
 
 # remove trailing 0
 modulo=$(echo $modulo | sed 's/0*$//')
