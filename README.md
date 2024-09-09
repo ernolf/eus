@@ -4,6 +4,11 @@
 ---
 ---
 
+#### **math-tools/calc**
+  - command-line calculator written in Python. Unlike Bash, it is not limited by integer size or precision constraints, allowing it to handle very large numbers and perform calculations with high precision, including many decimal places.
+
+---
+
 #### **networking/fbwanip**
   - grab WAN IP from your fritzbox.
 #### **networking/myip**

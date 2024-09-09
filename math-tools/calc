@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+import sys
+import math
+
+def calculate(expression):
+	try:
+		# Replace commas with dots for evaluation
+		expression = expression.replace(',', '.')
+
+		# Define a safe dictionary with mathematical functions
+		allowed_functions = {
+			'sin': math.sin,
+			'cos': math.cos,
+			'tan': math.tan,
+			'log': math.log,
+			'log10': math.log10,
+			'exp': math.exp,
+			'sqrt': math.sqrt
+		}
+		
+		# Evaluate the mathematical expression within a safe environment
+		result = eval(expression, {"__builtins__": None}, allowed_functions)
+		
+		# Format the result with thousands separator (.) and decimal separator (,)
+		formatted_result = '{:,.10f}'.format(result).replace(',', 'X').replace('.', ',').replace('X', '.')
+		# Remove trailing zeros and unnecessary decimal separator
+		formatted_result = formatted_result.rstrip('0').rstrip(',')
+		return formatted_result
+	except Exception as e:
+		# Return error message in case of invalid input or calculation error
+		return f"Error in calculation: {e}"
+
+def print_help():
+	print("""
+Usage: calc [OPTIONS] EXPRESSION
+
+A command-line calculator that supports basic and advanced mathematical operations.
+
+Options:
+  -h, --help         Show this help message and exit
+
+Mathematical Operations:
+  Basic operations:
+    +  Addition:         5 + 3
+    -  Subtraction:      5 - 3
+    *  Multiplication:   5 * 3
+    /  Division:         5 / 3
+    // Integer Division: 5 // 3
+    %  Modulo:           5 % 3
+    ** Exponentiation:   2 ** 3
+
+  Advanced operations:
+    Square root:         sqrt(x) or x ** 0.5
+    Logarithms:
+      Natural log:       log(x)
+      Log base 10:       log10(x)
+    Trigonometric functions:
+      Sin:               sin(x) (x in radians)
+      Cos:               cos(x) (x in radians)
+      Tan:               tan(x) (x in radians)
+    Exponential:         exp(x)
+
+Examples:
+  calc "5 + 3"
+  calc "10 / 2"
+  calc "2 ** 3"
+  calc "16 ** 0.5"
+  calc "sqrt(16)"
+  calc "27 ** (1/3)"
+  calc "81 ** (1/4)"
+  calc "10 % 3"
+  calc "2 * 2.786"
+  calc "sin(3.14159 / 2)"
+  calc "log(10)"
+  calc "exp(1)"
+""")
+
+if __name__ == "__main__":
+	if len(sys.argv) > 1:
+		if sys.argv[1] in ('-h', '--help'):
+			print_help()
+		else:
+			# Join all command line arguments into a single expression
+			expression = "".join(sys.argv[1:])
+			# Calculate and print the result
+			print(calculate(expression))
+	else:
+		# Print a message if no arguments are provided
+		print("Please provide a mathematical expression or use -h for help.")
+
