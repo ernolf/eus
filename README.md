@@ -16,16 +16,19 @@
 
 ---
 
-#### **system-monitoring/cpumon**
-  - monitors CPU usage and log processes that consume all available CPU resources to identify potential bottlenecks and performance issues.
-    - Start it as a daemon with a high priority, so that it keeps logging, even if all other processes are frozen (as user root):
-      ```
-      nohup nice -n -20 "system-monitoring/cpumon" &>/dev/null &
-      ```
-    - Stop (as user root):
-      ```
-      kill $(pgrep -f "cpumon");fg
-      ```
+#### **php-tools/phpscan_fix_nullable.php**
+
+  - a command-line tool to **detect and optionally fix implicitly nullable typed parameters** in PHP source code.  
+It searches for parameters declared with a type and a default `= null` (e.g. `function foo(Type $x = null)`), and rewrites them into an explicit nullable type.  
+
+    You can choose between two fixing modes:  
+    - **default** → adds a nullable prefix (`?Type`)  
+    - **union mode** → adds a union type (`Type|null`)  
+
+    The script also supports **dry-run**, **backup & restore (undo)**, **custom backup suffix**, and **path/extension/exclude control**.  
+
+    > **Note:** This tool is relevant for PHP **8.0 and later**, where union and nullable types are supported.  
+    > Starting with **PHP 8.4**, implicitly nullable parameters (e.g. `Type $x = null` without `?Type` or `Type|null`) are deprecated and will trigger warnings, which is why this tool exists — to help you modernize your codebase before future PHP versions make this a hard error.
 
 ---
 
@@ -45,4 +48,5 @@
   - little calendar of actual year
 
 ---
+
 
