@@ -4,19 +4,19 @@
 ---
 ---
 
-#### **math-tools/calc**
+#### [**math-tools/calc**](/math-tools)
   - command-line calculator written in Python. Unlike Bash, it is not limited by integer size or precision constraints, allowing it to handle very large numbers and perform calculations with high precision, including many decimal places.
 
 ---
 
-#### **networking/fbwanip**
+#### [**networking/fbwanip**](/networking/fbwanip)
   - grab WAN IP from your fritzbox.
-#### **networking/myip**
+#### [**networking/myip**](/networking/myip)
   - grab IP from host.
 
 ---
 
-#### **php-tools/phpscan_fix_nullable.php**
+#### [**php-tools/phpscan_fix_nullable.php**](/php-tools#readme)
 
   - a command-line tool to **detect and optionally fix implicitly nullable typed parameters** in PHP source code.  
 It searches for parameters declared with a type and a default `= null` (e.g. `function foo(Type $x = null)`), and rewrites them into an explicit nullable type.  
@@ -32,21 +32,20 @@ It searches for parameters declared with a type and a default `= null` (e.g. `fu
 
 ---
 
-#### **time-conversion/d2u**
+#### [**time-conversion/d2u**](/time-conversion/d2u)
   - convert human readable date format to unixtime (seconds since the unix epoch = 1970-01-01 00:00 UTC)
-#### **time-conversion/u2d**
+#### [**time-conversion/u2d**](/time-conversion/u2d)
   - convert unixtime to human readable date format
-#### **time-conversion/unix2datelong**
+#### [**time-conversion/unix2datelong**](/time-conversion/unix2datelong)
   - convert unixtime to human readable long date format
-#### **time-conversion/filetime2unix**
+#### [**time-conversion/filetime2unix**](/time-conversion/filetime2unix)
   - convert windows filetime (a 64-bit value representing the number of 100-nanosecond intervals since 1601-01-01- 00:00 UTC) to unixtime and human readable time format
-#### **time-conversion/unix2filetime**
+#### [**time-conversion/unix2filetime**](/time-conversion/unix2filetime)
   - convert unixtime or human readable time to windows filetime
-#### **time-conversion/today**
+#### [**time-conversion/today**](/time-conversion/today)
   - little calendar of actual month, today is highlighted
-#### **time-conversion/year**
+#### [**time-conversion/year**](/time-conversion/year)
   - little calendar of actual year
 
 ---
-
 
