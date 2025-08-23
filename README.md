@@ -16,13 +16,13 @@
 
 ---
 
-#### [**php-tools/php_dump_consts.php**](/php-tools/README.md#php_dump_constsphp)
+#### [**php-tools/php_dump_consts.php**](/php-tools#readme)
 
   - command-line utility to **list and search all PHP constants** in your PHP version, with flexible filtering options.  
 Supports filtering by category, prefix, suffix, pattern, or substring search, and shows the type of each constant.
 
 
-#### [**php-tools/phpscan_fix_nullable.php**](/php-tools/README.md#phpscan_fix_nullablephp)
+#### [**php-tools/phpscan_fix_nullable.php**](/php-tools#readme)
 
   - a command-line tool to **detect and optionally fix implicitly nullable typed parameters** in PHP source code.  
 It searches for parameters declared with a type and a default `= null` (e.g. `function foo(Type $x = null)`), and rewrites them into an explicit nullable type.  
@@ -33,8 +33,9 @@ It searches for parameters declared with a type and a default `= null` (e.g. `fu
 
     The script also supports **dry-run**, **backup & restore (undo)**, **custom backup suffix**, and **path/extension/exclude control**.  
 
-    > **Note:** This tool is relevant for PHP **8.0 and later**, where union and nullable types are supported.  
-    > Starting with **PHP 8.4**, implicitly nullable parameters (e.g. `Type $x = null` without `?Type` or `Type|null`) are deprecated and will trigger warnings, which is why this tool exists — to help you modernize your codebase before future PHP versions make this a hard error.
+> [!NOTE]
+> This tool is relevant for PHP **8.0 and later**, where union and nullable types are supported.  
+> Starting with **PHP 8.4**, implicitly nullable parameters (e.g. `Type $x = null` without `?Type` or `Type|null`) are deprecated and will trigger warnings, which is why this tool exists — to help you modernize your codebase before future PHP versions make this a hard error.
 
 ---
 
