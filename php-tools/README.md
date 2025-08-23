@@ -145,3 +145,65 @@ It searches for parameters declared with a type and a default `= null` (e.g. `fu
 
       - Excludes: Avoid scanning unwanted directories like vendor, test, 3rdparty or apps.
 
+---
+# **php_dump_consts.php**
+
+  - command-line utility to list and search all PHP constants in your PHP version, with flexible filtering options.
+
+  - supports filtering by category, prefix, suffix, pattern, or substring search, and shows the type of each constant.
+
+    ### Usage:
+    ```bash
+     ./php_dump_consts.php [OPTIONS] [CONSTNAME]
+    ```
+
+    Options:
+
+    `--all`
+
+    - Show all constants grouped by category
+
+    `--category=NAME`
+
+    - Show constants only from given category (case insensitive)
+
+    `--prefix=STR`
+
+    - Show constants starting with STR
+
+    `--suffix=STR`
+
+    - Show constants ending with STR
+
+    `--pattern=REGEX`
+
+    - Show constants matching regex (PCRE)
+
+    `--search=SUBSTR`
+
+    - Show constants containing SUBSTR anywhere
+
+    `--help`
+
+    - Show this help
+
+    Notes:
+      - If invoked without options, a summary of categories with counts is displeyed.
+      - Use --all to display all constants in all categories.
+      - If CONSTNAME is given without option, its value is displayed if it exists,
+        otherwise a hint is printed.
+      - Constants are grouped by category (core, pcre, standard, etc.).
+      - Each constant shows its type: [int], [string], [bool], [array], [float], [null].
+
+    Examples:
+      ```bash
+       ./php_dump_consts.php                 # List categories with counts
+       ./php_dump_consts.php --category=core # Show constants in 'core'
+       ./php_dump_consts.php --all           # Show all constants
+       ./php_dump_consts.php --prefix=E_     # Show all error constants
+       ./php_dump_consts.php PHP_EOL         # Show value of constant PHP_EOL
+       ./php_dump_consts.php --suffix=_ERROR # All constants ending with _ERROR
+       ./php_dump_consts.php --pattern='/^STD/' # Regex match
+       ./php_dump_consts.php --search=HTTP   # All constants containing 'HTTP'
+      ```
+

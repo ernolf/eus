@@ -16,7 +16,13 @@
 
 ---
 
-#### [**php-tools/phpscan_fix_nullable.php**](/php-tools#readme)
+#### [**php-tools/php_dump_consts.php**](/php-tools/README.md#php_dump_constsphp)
+
+  - command-line utility to **list and search all PHP constants** in your PHP version, with flexible filtering options.  
+Supports filtering by category, prefix, suffix, pattern, or substring search, and shows the type of each constant.
+
+
+#### [**php-tools/phpscan_fix_nullable.php**](/php-tools/README.md#phpscan_fix_nullablephp)
 
   - a command-line tool to **detect and optionally fix implicitly nullable typed parameters** in PHP source code.  
 It searches for parameters declared with a type and a default `= null` (e.g. `function foo(Type $x = null)`), and rewrites them into an explicit nullable type.  
